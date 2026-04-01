@@ -3,7 +3,7 @@
 #include <gmp.h>
 
 // Algoritm Fast Doubling
-void fib_fast(unsigned long n, mpz_t fn, mpz_t fn1) {
+void fib_fast(unsigned int n, mpz_t fn, mpz_t fn1) {
     if (n == 0) {
         mpz_set_ui(fn, 0);
         mpz_set_ui(fn1, 1);
@@ -34,9 +34,9 @@ void fib_fast(unsigned long n, mpz_t fn, mpz_t fn1) {
 }
 
 int main() {
-    unsigned long N;
+    unsigned int N;
     printf("Introdu poziția N: ");
-    scanf("%lu", &N);
+    scanf("%u", &N);
 
     mpz_t fn, fn1;
     mpz_inits(fn, fn1, NULL);
@@ -46,11 +46,11 @@ int main() {
     QueryPerformanceCounter(&start);
 
     fib_fast(N, fn, fn1);
-    gmp_printf("Fib(%lu) = %Zd\n", N, fn);
+    gmp_printf("Fib(%u) = %Zd\n", N, fn);
     QueryPerformanceCounter(&end);
     double elapsed = (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
 
-    gmp_printf("Fib(%lu) calculat în %.9f secunde\n", N, elapsed);
+    gmp_printf("Fib(%u) calculat în %.9f secunde\n", N, elapsed);
 
     mpz_clears(fn, fn1, NULL);
     return 0;
